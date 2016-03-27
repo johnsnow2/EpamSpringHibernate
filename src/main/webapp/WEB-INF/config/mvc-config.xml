@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+	   http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd">
+
+       <!-- context:component-scan This tag will scan @Component, @Repository, @Service, @Controller
+            and also resolves @Autowired and @Qualifier -->
+
+       <mvc:annotation-driven/>
+
+       <!-- Обрабатывает HTTP GET запросы для указанного каталога более эффективно
+        для статических ресурсов -->
+       <mvc:resources mapping="/resources/**" location="resources"/>
+
+       <!-- Определяет какое представление рендерить на основании вычеслений в @Controller
+       (return ModelAndView) -->
+       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+              <property name="prefix" value="/WEB-INF/view/"/>
+              <property name="suffix" value=".jsp"/>
+       </bean>
+
+       <!-- Сканирует пакет для поиска бинов -->
+       <context:component-scan base-package="ua.danni"/>
+       <!--  Включает Spring аннотации вроде @Uatowired, @Requared-->
+       <context:annotation-config/>
+
+       <!-- <mvc:view-controller path="/about.html" view-name="/about/about"/>
+        <mvc:view-controller path="/index.html" view-name="/index"/> -->
+
+
+ </beans>
